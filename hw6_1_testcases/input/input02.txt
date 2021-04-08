@@ -1,0 +1,15 @@
+5
+Fresno
+LA
+SD
+SF
+NYC
+6
+SD LA
+SD NYC
+LA NYC
+SF Fresno
+SF SD
+Fresno SD
+SF
+2

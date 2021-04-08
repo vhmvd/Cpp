@@ -1,0 +1,16 @@
+﻿  BST.cpp
+  main.cpp
+D:\[Work\mumu\mumu\main.cpp(29,20): warning C4244: 'initializing': conversion from '_Rep' to 'long', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\[Work\mumu\mumu\main.cpp(51,21): warning C4244: 'initializing': conversion from '_Rep' to 'long', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  MapADT.cpp
+D:\[Work\mumu\mumu\MapADT.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  mumu.vcxproj -> D:\[Work\mumu\Debug\mumu.exe

@@ -1,0 +1,14 @@
+4
+Monterey
+LA
+SF
+SD
+6
+Monterey LA
+LA SD
+SD Monterey
+SF Monterey
+SF LA
+SF SD
+Monterey
+2

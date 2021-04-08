@@ -1,0 +1,5 @@
+Fresno:1
+LA:2
+NYC:2
+SD:1
+SF:0

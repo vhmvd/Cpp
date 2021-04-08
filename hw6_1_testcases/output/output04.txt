@@ -1,0 +1,4 @@
+LA:1
+Monterey:1
+SD:0
+SF:1

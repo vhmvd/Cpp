@@ -1,0 +1,17 @@
+7
+AA
+BB
+CC
+DD
+EE
+FF
+GG
+6
+AA BB
+AA CC
+BB DD
+BB EE
+CC FF
+CC GG
+AA
+2

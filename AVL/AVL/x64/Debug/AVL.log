@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\Project$\AVL\AVL\AVL.h(214): warning C4715: 'Dictionary<int,int>::changer': not all control paths return a value
+D:\Project$\AVL\AVL\AVL.h(198): warning C4715: 'Dictionary<int,int>::searcher': not all control paths return a value
+  AVL.vcxproj -> D:\Project$\AVL\x64\Debug\AVL.exe

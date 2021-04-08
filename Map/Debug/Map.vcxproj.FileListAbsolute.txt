@@ -1,0 +1,2 @@
+D:\Project$\Map\Debug\Map.exe
+D:\Project$\Map\Debug\Map.pdb
