@@ -1,2 +1,0 @@
-D:\Projects\work\queue2\Debug\queue2.exe
-D:\Projects\work\queue2\Debug\queue2.pdb
