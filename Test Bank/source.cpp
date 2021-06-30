@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <fstream>
 
 using namespace std;
@@ -55,7 +56,7 @@ class QuestionMC : public Question
 {
 private:
   string answer;
-  string options;
+  vector<string> options;
 
 public:
   QuestionMC(string theQuestion, int pointValue, string theAnswer) : Question(theQuestion, pointValue), answer(theAnswer)
@@ -63,11 +64,16 @@ public:
   }
   void addOption(string anOption)
   {
-    options = anOption;
+    options.push_back(anOption);
   }
   string printOptions()
   {
-    return options;
+    string temp = "";
+    for(string itr: options)
+    {
+      temp+=itr;
+    }
+    return temp;
   }
   string getAnswer()
   {
@@ -77,54 +83,82 @@ public:
 
 int main(int argc, char *argv[])
 {
-  ifstream inFile;
-  Question *myQuestions[10];
-  int numberOfQuestion = 0, points, questionNumber = 0, numberOfOptions;
+  vector<Question*> myQuestions;
+  unsigned int numberOfQuestion;
+  int points, questionNumber = 0, numberOfOptions;
+  bool flag = true;
   string qType, question, answer;
-  inFile.open("testbank.txt");
-  if (!inFile)
+  cout << "\nEnter number of questions: ";
+  try
   {
-    cerr << "Unable to open file testbank.txt";
+    cin >> numberOfQuestion;
+  }
+  catch(const exception& e)
+  {
+    cerr << "Invalid input. Only positive integer accepted\n";
     return 1;
   }
-  inFile >> numberOfQuestion;
   for (int i = 0; i < numberOfQuestion; i++)
   {
-    inFile >> qType;
-    inFile >> points;
+    cout << "Enter question type (TF/MC): ";
+    cin >> qType;
+    if(qType != "TF" && qType != "MC")
+    {
+      i--;
+      cerr << "Invalid question type. TF or MC only. \n";
+      continue;
+    }
+    try
+    {
+      cout << "Enter points: ";
+      cin >> points;
+      if(points < 0)
+      {
+        throw (points);
+      }
+    }
+    catch(int e)
+    {
+      cerr << "Points cannot be negative\n";
+    }
+    
+    
     if (qType == "TF")
     {
-      inFile.get();
-      getline(inFile, question);
-      getline(inFile, answer);
-      myQuestions[questionNumber] = new QuestionTF(question, points, answer);
+      cin.ignore();
+      cout << "Enter question: ";
+      getline(cin, question);
+      cout << "Enter answer: ";
+      getline(cin, answer);
+      myQuestions.push_back(new QuestionTF(question, points, answer));
     }
     else if (qType == "MC")
     {
-      inFile.get();
-      getline(inFile, question);
-      inFile >> numberOfOptions;
+      cin.ignore();
+      cout << "Enter question: ";
+      getline(cin, question);
+      cin >> numberOfOptions;
       string start = "A. ", temp, option = "";
-      inFile.get();
+      getline(cin, answer);
+      cout << "Enter answer: ";
+      QuestionMC* ptr = new QuestionMC(question, points, answer);
       for(int i=0; i<numberOfOptions; i++)
       {
-        getline(inFile, temp);
-        option += "\n" + start + temp;
-        start[0]++;
+        getline(cin, temp);
+        ptr->addOption(option);
       }
-      getline(inFile, answer);
-      QuestionMC* ptr = new QuestionMC(question, points, answer);
-      ptr->addOption(option);
-      myQuestions[questionNumber] = ptr;
+      myQuestions.push_back(ptr);
     }
     questionNumber++;
   }
-  inFile.close();
 
-  for (int count = 0; count < numberOfQuestion; count++)
+  ofstream outFile("test.out");
+  outFile << numberOfQuestion << endl;
+  for(Question* itr: myQuestions)
   {
-    cout << myQuestions[count]->getQuestion();
-    cout << myQuestions[count]->printOptions() << endl << endl;
+    outFile << itr->getQuestion() << " " << itr->getValue() << endl;
+    outFile << itr->printOptions() << endl;
+    outFile << itr->getAnswer() << endl;
   }
   return 0;
 }
